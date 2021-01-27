@@ -1,0 +1,24 @@
+.btn {
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+}
+
+.primary {
+    background-color: #0f730c;
+    color: #ffffff;
+}
+
+.secondary {
+    background-color: #ffffff;
+    color: #0f730c;
+    border: 1px solid #0f730c;
+    border-top: none;
+    border-bottom: none;
+    transition: 0.2s;
+}
+
+.secondary:hover {
+    background-color: #0f730c;
+    color: #ffffff;
+}
