@@ -12,13 +12,26 @@
 .secondary {
     background-color: #ffffff;
     color: #0f730c;
-    border: 1px solid #0f730c;
-    border-top: none;
-    border-bottom: none;
+    border: 1px none #0f730c;
     transition: 0.2s;
 }
 
 .secondary:hover {
     background-color: #0f730c;
     color: #ffffff;
+}
+
+.pagination {
+    background-color: #199215;
+    color: #ffffff;
+    border: 1px solid #199215;
+}
+
+.pagination:active {
+    background-color: #1fad1a;
+}
+
+.pagination:disabled {
+    background-color: #717c70;
+    border: 1px solid #717c70;
 }

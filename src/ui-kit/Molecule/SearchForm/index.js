@@ -32,7 +32,7 @@ class SearchForm extends React.Component {
             <Button 
               typeStyle="primary"
               type="submit" 
-              children="Submit" 
+              children="Search" 
             />
         </form>
     )

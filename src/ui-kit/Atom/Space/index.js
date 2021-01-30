@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Space.css'
+import SpcStyle from './Space.module.css'
 
 const Space = ({ space }) => {
     const className = `mb${space}`
-    return <div className={className} />
+    return <div className={`${SpcStyle[className]}`} />
 }
 
 Space.propTypes = {

@@ -1,12 +1,11 @@
 import React from 'react'
-import "./table.css"
+import TableStyle from "./Table.module.css"
+import PropTypes from 'prop-types';
 
-const Table = ( props ) => {
-    const { data } = props
-    let dataHead = Object.keys(data[0])
-
+const Table = ( { data , dataHead, page } ) => {
+    
     return (
-        <table id="table">
+        <table className={`${TableStyle.table}`}>
             <thead>
                 <tr>
                     {dataHead.map(x => (
@@ -15,8 +14,9 @@ const Table = ( props ) => {
                 </tr>
             </thead>
             <tbody>
-                {data.map(x => (
+                {data.map((x, i) => (
                     <tr key={x.id}>
+                        <td>{(page-1)*10+(i+1)}</td>
                         {Object.values(x).map(e => (
                             <td>{e}</td>
                         ))}
@@ -24,6 +24,14 @@ const Table = ( props ) => {
                 ))}
             </tbody>
         </table>
+    )
+}
+
+Table.propTypes = {
+    data: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number
+        })
     )
 }
 
