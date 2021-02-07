@@ -1,6 +1,6 @@
 import React from 'react'
-import Template from '../../Template'
-import { ProductContent } from '../../Component'
+import Template from 'ui-kit/Template'
+import { ProductContent } from 'Component'
 import { Link, useRouteMatch } from 'react-router-dom'
 import { ListItem, ListItemText } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'

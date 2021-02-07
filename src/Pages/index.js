@@ -1,3 +1,5 @@
 export { default as HomePage } from './HomePage'
 export { default as ChatPage } from './ChatPage'
 export { default as ProductPage } from './ProductPage'
+export { default as CreateProduct } from './CreateProduct'
+export { default as ProductList } from './ProductList'
