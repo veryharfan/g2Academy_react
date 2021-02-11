@@ -1,0 +1,6 @@
+export const ADD_ITEM = 'ADD_ITEM'
+export const UPDATE_ITEM = 'UPDATE_ITEM'
+export const DECREASE_ITEM = 'DECREASE_ITEM'
+export const DELETE_ITEM = 'DELETE_ITEM'
+export const CHECKOUT = 'CHECKOUT'
+export const FETCH_PRODUCT = 'FETCH_PRODUCT'
