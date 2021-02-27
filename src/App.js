@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { HomePage, Checkout, Detail, Product } from 'Pages'
+import { Context } from 'store'
+import { productReducer, cartReducer, detailReducer } from 'store/reducer'
+import { products } from 'store/reducer/product'
 
 function App() {
+  const [product, dispatchProduct] = React.useReducer(productReducer, products)
+  const [cart, dispatchCart] = React.useReducer(cartReducer, {
+    checkout: false,
+    result: [],
+  })
+  const [detail, setDetail] = React.useReducer(detailReducer, {})
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Context.Provider
+      value={{
+        product,
+        dispatchProduct,
+        cart,
+        dispatchCart,
+        detail,
+        setDetail,
+      }}
+    >
+      <Router>
+        <Switch>
+          <Route path="/checkout">
+            <Checkout />
+          </Route>
+          <Route path="/detail">
+            <Detail />
+          </Route>
+          <Route path="/product">
+            <Product />
+          </Route>
+          <Route path="/">
+            <HomePage />
+          </Route>
+        </Switch>
+      </Router>
+    </Context.Provider>
+  )
 }
 
-export default App;
+export default App
