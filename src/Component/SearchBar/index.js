@@ -10,7 +10,9 @@ const styles = makeStyles(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    width: '60%',
+    width: '40%',
+    height: 36,
+    borderRadius: 5,
   },
   p1: {
     padding: theme.spacing(1),

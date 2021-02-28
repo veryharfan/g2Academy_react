@@ -6,6 +6,7 @@ import { productReducer, cartReducer, detailReducer } from 'store/reducer'
 import { products } from 'store/reducer/product'
 
 function App() {
+  const [user, setUser] = React.useState(null)
   const [product, dispatchProduct] = React.useReducer(productReducer, products)
   const [cart, dispatchCart] = React.useReducer(cartReducer, {
     checkout: false,
@@ -21,6 +22,8 @@ function App() {
         dispatchCart,
         detail,
         setDetail,
+        user,
+        setUser,
       }}
     >
       <Router>

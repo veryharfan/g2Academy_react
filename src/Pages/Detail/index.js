@@ -5,6 +5,7 @@ import {
   CardContent,
   Typography,
   Button,
+  Paper,
 } from '@material-ui/core'
 import React from 'react'
 import { Context } from 'store'
@@ -15,9 +16,13 @@ import { useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 
 function Detail() {
-  const { detail, dispatchCart, dispatchProduct, setDetail } = React.useContext(
-    Context,
-  )
+  const {
+    user,
+    detail,
+    dispatchCart,
+    dispatchProduct,
+    setDetail,
+  } = React.useContext(Context)
   const product = detail.details
   const history = useHistory()
 
@@ -61,6 +66,32 @@ function Detail() {
     history.push('/')
   }
 
+  function displayAction() {
+    if (user) {
+      return (
+        <>
+          <Button variant="outlined" color="primary" onClick={onClickEdit}>
+            Edit
+          </Button>
+          <Button variant="outlined" color="secondary" onClick={onClickDelete}>
+            Delete
+          </Button>
+        </>
+      )
+    } else {
+      return (
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.addToCart}
+          onClick={addToCart}
+        >
+          Add to Cart
+        </Button>
+      )
+    }
+  }
+
   const classes = useStyles()
   return (
     <>
@@ -83,35 +114,18 @@ function Detail() {
               <Typography variant="subtitle1" color="textSecondary">
                 Description:
               </Typography>
-              <Typography
-                variant="subtitle1"
-                color="textSecondary"
-                className={classes.justify}
-              >
-                {product.description}
-              </Typography>
+              <Paper>
+                <Typography
+                  variant="subtitle1"
+                  color="textSecondary"
+                  className={classes.justify}
+                >
+                  {product.description}
+                </Typography>
+              </Paper>
             </CardContent>
           </div>
-          <div className={classes.controls}>
-            <Button variant="outlined" color="primary" onClick={onClickEdit}>
-              Edit
-            </Button>
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={onClickDelete}
-            >
-              Delete
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.addToCart}
-              onClick={addToCart}
-            >
-              Add to Cart
-            </Button>
-          </div>
+          <div className={classes.controls}>{displayAction()}</div>
         </Card>
       </Container>
     </>
@@ -141,6 +155,7 @@ const useStyles = makeStyles(theme => ({
   },
   justify: {
     textAlign: 'justify',
+    whiteSpace: 'pre-line',
   },
   action: {
     display: 'flex',

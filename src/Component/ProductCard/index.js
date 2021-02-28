@@ -26,7 +26,22 @@ const useStyles = {
   },
 }
 
-function ProductCard({ data, onClick, onClickCard }) {
+function ProductCard({ data, onClick, onClickCard, hideAction }) {
+  function hideActions() {
+    if (!hideAction) {
+      return (
+        <Button
+          variant="contained"
+          color="secondary"
+          style={useStyles.button}
+          startIcon={<AddShoppingCart />}
+          onClick={() => onClick(data)}
+        >
+          Add to cart
+        </Button>
+      )
+    }
+  }
   return (
     <Card style={useStyles.root}>
       <CardActionArea onClick={() => onClickCard(data)}>
@@ -45,17 +60,7 @@ function ProductCard({ data, onClick, onClickCard }) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions style={useStyles.cardActions}>
-        <Button
-          variant="contained"
-          color="secondary"
-          style={useStyles.button}
-          startIcon={<AddShoppingCart />}
-          onClick={() => onClick(data)}
-        >
-          Add to cart
-        </Button>
-      </CardActions>
+      <CardActions style={useStyles.cardActions}>{hideActions()}</CardActions>
     </Card>
   )
 }
