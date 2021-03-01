@@ -16,6 +16,7 @@ function Product() {
   const [stocks, setStocks] = useState('')
   const [desc, setDesc] = useState('')
   const [images, setImages] = useState('')
+  const [img, setImg] = useState('')
 
   React.useEffect(() => {
     console.log(detail.toUpdate)
@@ -104,12 +105,35 @@ function Product() {
     }
   }
 
+  function upload(e) {
+    const uri = URL.createObjectURL(e.target.files[0])
+    setImg(uri)
+    setImages(uri)
+  }
+
   const classes = useStyles()
 
   return (
     <>
       <MyHeader />
       <Container className={classes.container}>
+        <div className={classes.root}>
+          <input
+            accept="image/*"
+            name="image"
+            className={classes.inputImg}
+            id="contained-button-file"
+            multiple
+            type="file"
+            onChange={upload}
+          />
+          <img src={img} alt="" className={classes.img} />
+          <label htmlFor="contained-button-file">
+            <Button variant="contained" color="primary" component="span">
+              Choose Image
+            </Button>
+          </label>
+        </div>
         <TextField
           label="Product Name"
           name="name"
@@ -123,14 +147,6 @@ function Product() {
           name="price"
           value={price}
           onChange={e => setPrice(e.target.value)}
-          className={classes.input}
-          required
-        />
-        <TextField
-          label="Image"
-          name="image"
-          value={images}
-          onChange={e => setImages(e.target.value)}
           className={classes.input}
           required
         />
@@ -151,14 +167,6 @@ function Product() {
           className={classes.input}
         />
         {toUpdate()}
-        {/* <Button
-          variant="contained"
-          color="primary"
-          onClick={onAdd}
-          className={classes.button}
-        >
-          Add Product
-        </Button> */}
       </Container>
     </>
   )
@@ -174,6 +182,16 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     margin: '20px auto',
+  },
+  root: {
+    marginTop: 20,
+  },
+  img: {
+    maxWidth: 200,
+    maxHeight: 200,
+  },
+  inputImg: {
+    display: 'none',
   },
 }))
 

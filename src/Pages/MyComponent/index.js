@@ -21,6 +21,9 @@ export function MyHeader() {
   }
   const handleClose = () => {
     setAnchorEl(null)
+  }
+
+  const handleLogout = () => {
     setUser(null)
     localStorage.removeItem('token')
   }
@@ -76,7 +79,7 @@ export function MyHeader() {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>Log out</MenuItem>
+            <MenuItem onClick={handleLogout}>Log out</MenuItem>
           </Menu>
         </>
       )
