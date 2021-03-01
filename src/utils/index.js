@@ -1,2 +1,2 @@
 export { default as addSeparator } from './addSeparator'
-export { default as handleLogin } from './handleLogin'
+export { parseJWT } from './parseJWT'

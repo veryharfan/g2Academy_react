@@ -4,6 +4,7 @@ import { HomePage, Checkout, Detail, Product } from 'Pages'
 import { Context } from 'store'
 import { productReducer, cartReducer, detailReducer } from 'store/reducer'
 import { products } from 'store/reducer/product'
+import { parseJWT } from 'utils'
 
 function App() {
   const [user, setUser] = React.useState(null)
@@ -13,6 +14,15 @@ function App() {
     result: [],
   })
   const [detail, setDetail] = React.useReducer(detailReducer, {})
+
+  React.useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      const decodedToken = parseJWT(token)
+      setUser({ name: decodedToken.name, email: decodedToken.email })
+    }
+  }, [])
+
   return (
     <Context.Provider
       value={{

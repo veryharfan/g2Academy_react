@@ -3,6 +3,7 @@ import { Header, SearchBar, IconWithBadge } from 'Component'
 import { Context } from 'store'
 import { Link, useHistory } from 'react-router-dom'
 import { signInWithGoogle, auth } from 'service'
+import { parseJWT } from 'utils'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
@@ -41,8 +42,8 @@ export function MyHeader() {
       .getIdToken(true)
       .then(res => {
         localStorage.setItem('token', res)
-        const parseJWT = JSON.parse(atob(res.split('.')[1]))
-        setUser({ name: parseJWT.name, email: parseJWT.email })
+        const decodedToken = parseJWT(res)
+        setUser({ name: decodedToken.name, email: decodedToken.email })
       })
       .catch(err => console.error(err))
   }
